@@ -1,31 +1,33 @@
 <?php
-class Database{
- public static $conn;
- 
- public static function getconnection(){
-    if (Database::$conn === null){
-    $servername = get_config('db_server');
-    $username =   get_config('db_username');
-    $password =   get_config('db_password');
-    $dbname  =    get_config('db_name');
+class Database {
+    private static $conn = null;
 
-    $connetion = new mysqli($servername, $username, $password, $dbname);
-    
-    // 🔒 Graceful connection failure
-    if ($connetion->connect_error) {
-        return "Connection failed: " . $connetion->connect_error;
-        print("no");
-    }else{
-  //      printf("New");
-        Database::$conn = $connetion;
-        return Database::$conn;
-                print("yes");
+    public static function getConnection() {
+        if (self::$conn instanceof mysqli && self::$conn->ping()) {
+            // Connection exists and is alive
+            return self::$conn;
+        }
+
+        $servername = get_config('db_server');
+        $username = get_config('db_username');
+        $password = get_config('db_password');
+        $dbname = get_config('db_name');
+
+        $connection = new mysqli($servername, $username, $password, $dbname);
+
+        if ($connection->connect_error) {
+            throw new Exception("Connection failed: " . $connection->connect_error);
+        }
+
+        self::$conn = $connection;
+        return self::$conn;
     }
 
-
-    }else{
-//        printf("exists");
-        return Database::$conn;
+    public static function closeConnection() {
+        if (self::$conn instanceof mysqli) {
+            self::$conn->close();
+            self::$conn = null;
+        }
     }
- }
 }
+?>

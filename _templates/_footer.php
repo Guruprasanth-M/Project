@@ -17,8 +17,8 @@
       <span class="text-xs text-gray-400 mb-1">&copy; 2025 Guruprasanth-M</span>
       <span class="text-xs text-gray-500">Built with 
         <a href="https://github.com/Guruprasanth-M" target="_blank" class="hover:underline">@guru</a>, 
-        <a href="#" target="_blank" class="hover:underline">@makesh</a>, 
-        <a href="#" target="_blank" class="hover:underline">@sandy</a>
+        <!-- <a href="#" target="_blank" class="hover:underline">@makesh</a>, 
+        <a href="#" target="_blank" class="hover:underline">@sandy</a> -->
       </span>
     </div>
   </div>

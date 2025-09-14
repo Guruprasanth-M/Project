@@ -1,6 +1,14 @@
+<?php
+// Start session safely!
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$username = isset($_SESSION['username']) && !empty($_SESSION['username'])
+    ? htmlspecialchars($_SESSION['username'])
+    : "Guest";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +18,7 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #161b22;
+            background: linear-gradient(120deg, #6366f1 0%, #22d3ee 100%);
             color: #e2e8f0;
         }
         a { text-decoration: none; color: inherit; }
@@ -22,7 +30,7 @@
         .flex { display: flex; }
         .sidebar {
             width: 17rem;
-            background: #0d1117;
+            background: rgba(13,17,23,0.93);
             color: #e2e8f0;
             height: 100vh;
             position: sticky;
@@ -31,11 +39,12 @@
             z-index: 20;
             box-shadow: 0 0 12px rgba(0,0,0,0.09);
             transition: transform 0.3s;
+            backdrop-filter: blur(6px);
         }
         .sidebar-header {
             position: sticky;
             top: 0;
-            background: #0d1117;
+            background: rgba(13,17,23,0.93);
             z-index: 21;
             padding-top: 2.5rem;
             padding-bottom: 1rem;
@@ -47,6 +56,8 @@
             font-weight: bold;
             margin: 0;
             color: #38bdf8;
+            letter-spacing: 1px;
+            filter: drop-shadow(0 0 7px #6366f1);
         }
         .sidebar nav {
             margin-top: 2rem;
@@ -56,17 +67,18 @@
         .sidebar ul li a {
             display: block;
             padding: 0.75rem 1rem;
-            background: #161b22;
+            background: rgba(22,27,34,0.93);
             border-radius: 0.5rem;
             transition: background 0.3s, color 0.3s;
             color: #e2e8f0;
             font-weight: 500;
         }
         .sidebar ul li a:hover, .sidebar ul li a:focus {
-            background: #3b82f6;
+            background: #6366f1;
             color: #fff;
         }
         .sidebar ul li a i { margin-right: 0.5rem; }
+
         .sidebar-toggle {
             display: none;
             position: fixed;
@@ -82,18 +94,20 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
         /* Main Content */
         .main-content {
             flex: 1;
             min-width: 0;
-            background: #161b22;
+            background: transparent;
             padding: 0;
         }
         .dashboard-header {
             padding: 2.5rem 0 1.5rem 0;
             border-bottom: 1px solid #222;
-            background: #0d1117;
+            background: rgba(13,17,23,0.88);
+            border-radius: 0 0 1.2rem 1.2rem;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,.12);
+            margin-bottom: 2rem;
         }
         .dashboard-header h1 {
             font-size: 2.7rem;
@@ -101,6 +115,7 @@
             color: #38bdf8;
             margin: 0;
             letter-spacing: 1px;
+            text-shadow: 0 2px 10px #6366f177;
         }
         .dashboard-header p {
             color: #94a3b8;
@@ -114,7 +129,7 @@
             flex-wrap: wrap;
         }
         .feature-btn {
-            background: #222;
+            background: rgba(34,34,34,0.88);
             color: #e2e8f0;
             border: 1px solid #30363d;
             border-radius: 0.5rem;
@@ -124,12 +139,12 @@
             display: flex;
             align-items: center;
             gap: 0.7rem;
-            transition: background 0.2s, border 0.2s;
+            transition: background 0.2s, border 0.2s, color 0.2s;
         }
         .feature-btn:hover {
-            background: #3b82f6;
-            color: #fff;
-            border-color: #3b82f6;
+            background: #38bdf8;
+            color: #161b22;
+            border-color: #38bdf8;
         }
         /* Cards grid */
         .dashboard-grid {
@@ -145,11 +160,11 @@
             .dashboard-grid { grid-template-columns: repeat(3, 1fr); }
         }
         .card {
-            background: #22272e;
+            background: rgba(34,39,46,0.98);
             border-radius: 1.2rem;
             padding: 2.3rem 1.4rem;
             text-align: left;
-            box-shadow: 0 6px 20px rgba(59,130,246,0.11);
+            box-shadow: 0 6px 20px rgba(59,130,246,0.13);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -160,12 +175,12 @@
         .card:hover {
             transform: translateY(-5px) scale(1.025);
             box-shadow: 0 20px 40px rgba(59,130,246,0.21);
-            border-color: #3b82f6;
+            border-color: #38bdf8;
         }
         .card .icon {
             font-size: 2.7rem;
             margin-bottom: 1.1rem;
-            color: #3b82f6;
+            color: #6366f1;
             transition: color 0.2s;
         }
         .card:hover .icon { color: #38bdf8; }
@@ -182,18 +197,19 @@
             margin-bottom: 1.2rem;
         }
         .btn {
-            background: #3b82f6;
-            color: #ffffff;
+            background: #38bdf8;
+            color: #161b22;
             padding: 0.6rem 1.25rem;
             border-radius: 0.5rem;
             font-weight: 600;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s, transform 0.2s, color 0.2s;
             box-shadow: 0 2px 8px rgba(59,130,246,0.09);
             border: none;
             font-size: 1rem;
         }
         .btn:hover, .btn:focus {
-            background: #2563eb;
+            background: #6366f1;
+            color: #fff;
             transform: translateY(-2px) scale(1.04);
         }
         /* Special Stats Section */
@@ -204,7 +220,7 @@
             flex-wrap: wrap;
         }
         .stat-card {
-            background: #22272e;
+            background: rgba(34,39,46,0.98);
             padding: 1.3rem 2.2rem;
             border-radius: 1rem;
             color: #38bdf8;
@@ -216,7 +232,7 @@
             align-items: center;
             gap: 0.8rem;
         }
-        .stat-card .stat-icon { font-size: 1.6rem; color: #3b82f6; }
+        .stat-card .stat-icon { font-size: 1.6rem; color: #6366f1; }
         .stat-card .stat-value { font-weight: bold; color: #fff; font-size: 1.45rem; margin-left: 0.2rem;}
         /* Responsive sidebar hamburger */
         @media(max-width: 900px) {
@@ -242,7 +258,6 @@
         .sidebar.open ~ .sidebar-overlay { display: block; }
     </style>
 </head>
-
 <body>
     <!-- Hamburger for mobile -->
     <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open alumni portal menu">
@@ -271,7 +286,7 @@
             <div class="container">
                 <!-- Dashboard Header -->
                 <section class="dashboard-header">
-                    <h1>Welcome, Explorer!</h1>
+                    <h1 class="text-3xl font-bold text-blue-400 mb-2">Welcome, <?php echo $username; ?>!</h1>
                     <p>Connect, collaborate, and create your story. This dashboard is your gateway to alumni, opportunities, and inspiration.</p>
                 </section>
                 <!-- Quick Feature Bar -->

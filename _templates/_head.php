@@ -97,7 +97,7 @@
       <div class="dropdown">
         <a href="#" class="block px-4 py-2 hover:bg-[#222] text-sm text-gray-200"><i class="fab fa-github mr-2"></i>Sign in with GitHub</a>
         <a href="#" class="block px-4 py-2 hover:bg-[#222] text-sm text-gray-200"><i class="fab fa-google mr-2"></i>Sign in with Google</a>
-        <a href="#" class="block px-4 py-2 hover:bg-[#222] text-sm text-gray-200"><i class="fas fa-envelope mr-2"></i>Email Login</a>
+        <a href="/project/login.php" class="block px-4 py-2 hover:bg-[#222] text-sm text-gray-200"><i class="fas fa-envelope mr-2"></i>Email Login</a>
         <div class="border-t border-gray-700 my-2"></div>
         <a href="#" class="block px-4 py-2 hover:bg-[#222] text-sm text-blue-400">Need help?</a>
       </div>
