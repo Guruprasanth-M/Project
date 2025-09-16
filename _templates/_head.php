@@ -114,6 +114,11 @@
       <div class="dropdown">
         <?php if ($username): ?>
           <!-- Show logout if logged in -->
+          <a href="/project/_templates/_profile.php"
+             class="block px-4 py-2 hover:bg-[#222] text-sm text-red-400">
+            <i class="fas fa-user mr-2"></i> Profile
+
+          </a>
           <a href="/project/logout.php"
              class="block px-4 py-2 hover:bg-[#222] text-sm text-red-400">
             <i class="fas fa-sign-out-alt mr-2"></i>Logout
