@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         body {
-            background: linear-gradient(120deg, #6366f1 0%, #22d3ee 100%);
+            background: linear-gradient(120deg, #010102ff 0%, #22d3ee 100%);
         }
         .glass {
             background: rgba(34,34,36,0.7);
