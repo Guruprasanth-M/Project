@@ -1,41 +1,72 @@
 <aside class="sidebar closed" id="sidebar">
+    <!-- Sidebar Header -->
     <div class="sidebar-header">
         <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
             <i class="fas fa-bars"></i>
         </button>
+        <span class="sidebar-title text-sm font-semibold">Menu</span>
     </div>
-    <nav>
-        <ul>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar-nav">
+        <ul class="text-sm">
             <li>
-                <a href="dashboard.php" title="Dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                <a href="#dashboard" onclick="showSection('dashboard')" title="Dashboard">
+                    <i class="fas fa-tachometer-alt"></i><span> Dashboard</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Calendar"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a>
+                <a href="#profile" onclick="showSection('profile')" title="Profile">
+                    <i class="fas fa-user"></i><span> Profile</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Collaboration"><i class="fas fa-project-diagram"></i><span>Collaboration</span></a>
+                <a href="#leaderboard" onclick="showSection('leaderboard')" title="Leaderboard">
+                    <i class="fas fa-trophy"></i><span> Leaderboard</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Code"><i class="fas fa-code"></i><span>Code</span></a>
+                <a href="#directory" onclick="showSection('directory')" title="Directory">
+                    <i class="fas fa-users"></i><span> Directory</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Broadcast"><i class="fas fa-broadcast-tower"></i><span>Broadcast</span></a>
+                <a href="#jobs" onclick="showSection('jobs')" title="Jobs & Recruiters">
+                    <i class="fas fa-briefcase"></i><span> Jobs & Recruiters</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Tasks"><i class="fas fa-tasks"></i><span>Tasks</span></a>
+                <a href="#events" onclick="showSection('events')" title="Events & Announcements">
+                    <i class="fas fa-calendar-alt"></i><span> Events</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Structure"><i class="fas fa-sitemap"></i><span>Structure</span></a>
+                <a href="#challenges" onclick="showSection('challenges')" title="Practice/Challenges">
+                    <i class="fas fa-code"></i><span> Challenges</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="User"><i class="fas fa-user"></i><span>User</span></a>
+                <a href="#qa" onclick="showSection('qa')" title="Q&A Forum">
+                    <i class="fas fa-question-circle"></i><span> Q&A</span>
+                </a>
             </li>
             <li>
-                <a href="#" title="Security"><i class="fas fa-shield-alt"></i><span>Security</span></a>
+                <a href="#messages" onclick="showSection('messages')" title="Messages">
+                    <i class="fas fa-envelope"></i><span> Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#projects" onclick="showSection('projects')" title="Projects">
+                    <i class="fas fa-project-diagram"></i><span> Projects</span>
+                </a>
             </li>
         </ul>
-        <div class="sidebar-bottom">
-            <a href="#" title="Logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
-        </div>
     </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-bottom text-sm">
+        <a href="#settings" onclick="showSection('settings')" title="Settings">
+            <i class="fas fa-cog"></i><span> Settings</span>
+        </a>
+    </div>
 </aside>
