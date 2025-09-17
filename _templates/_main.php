@@ -30,7 +30,6 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
             width: 220px;
             background: linear-gradient(120deg, #000000ff 0%, #22d3ee 100%);
             color: #e2e8f0;
-            height: 100vh;
             top: 0;
             left: 0;
             z-index: 100;
@@ -42,6 +41,8 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
             display: flex;
             flex-direction: column;
             align-items: stretch;
+        
+           
         }
         .sidebar.closed {
             width: 56px;
@@ -59,7 +60,7 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
             color: #000;
             border: none;
             padding: 0.4rem 0.6rem;
-            border-radius: 50%;
+            border-radius: 10px;
             font-size: 1.2rem;
             cursor: pointer;
             margin: 0 auto;
@@ -120,6 +121,7 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
             width: 0;
             pointer-events: none;
         }
+        
         .sidebar ul li a:hover, .sidebar ul li a:focus {
             background: rgba(55,255,100,0.11);
             color: #bdf8c6;
@@ -135,7 +137,7 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
         }
         .sidebar.open ~ .main-content,
         .main-content.shift {
-            margin-left: 220px;
+            margin-left: 50px;
         }
         @media (max-width: 900px) {
             .main-content,
@@ -150,11 +152,12 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
 
         /* Dashboard content styles */
         .dashboard-header {
-            padding: 2rem 0 1rem 0;
+            padding: 2rem ;
             border-bottom: 1px solid #222;
             background: rgba(13,17,23,0.88);
-            border-radius: 0 0 1.2rem 1.2rem;
+            border-radius: 20px;
             margin-bottom: 2rem;
+            margin-top: 2rem;
         }
         .dashboard-header h1 { font-size: 2rem; font-weight: bold; color: #38bdf8; margin: 0; }
         .dashboard-header p { color: #94a3b8; font-size: 1rem; margin-top: 0.5rem; }
@@ -233,37 +236,37 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
                         <i class="fas fa-users icon"></i>
                         <h2>Networking Hub</h2>
                         <p>Connect with alumni in your field, find mentors, and join vibrant communities.</p>
-                        <a href="NetworkingHub.html" class="btn">Go to Hub</a>
+                        <a href="directory.php" class="btn">Go to Hub</a>
                     </div>
                     <div class="card">
                         <i class="fas fa-briefcase icon"></i>
                         <h2>Job Portal</h2>
                         <p>Discover open positions, internships, or post your own opportunities for others.</p>
-                        <a href="JobPortal.html" class="btn">Find Jobs</a>
+                        <a href="job.php" class="btn">Find Jobs</a>
                     </div>
                     <div class="card">
                         <i class="fas fa-calendar-alt icon"></i>
                         <h2>Events & Reunions</h2>
                         <p>See upcoming events, reunions, and register to meet fellow alumni.</p>
-                        <a href="EventsReunions.html" class="btn">See Events</a>
+                        <a href="event.php" class="btn">See Events</a>
                     </div>
                     <div class="card">
                         <i class="fas fa-trophy icon"></i>
                         <h2>Success Stories</h2>
                         <p>Read about inspiring alumni journeys and featured achievements.</p>
-                        <a href="SuccessStories.html" class="btn">Read Stories</a>
+                        <a href="success_stories.php" class="btn">Read Stories</a>
                     </div>
                     <div class="card">
-                        <i class="fas fa-comments icon"></i>
-                        <h2>Feedback & Surveys</h2>
-                        <p>Share your thoughts, suggest improvements, and help grow the community.</p>
-                        <a href="feedback_form.html" class="btn">Send Feedback</a>
+                        <i class="fas fa-code icon"></i>
+                        <h2>Practice here</h2>
+                        <p>Improve your problem solving skill by solving our problems</p>
+                        <a href="practice.php" class="btn">Send Feedback</a>
                     </div>
                     <div class="card">
                         <i class="fas fa-lightbulb icon"></i>
                         <h2>Ideas & Innovation</h2>
                         <p>Propose new features, vote on ideas, and help shape the future of this portal.</p>
-                        <a href="#" class="btn">Submit Idea</a>
+                        <a href="submit.php" class="btn">Submit Idea</a>
                     </div>
                 </section>
             </div>

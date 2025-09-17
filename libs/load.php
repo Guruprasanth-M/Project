@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include_once 'includes/database_class.php';
 include_once 'includes/userclass_class.php';
+include_once 'includes/usersession_class.php';
 
 
 global $__site__config;

@@ -1,3 +1,4 @@
+<?php include '/_templates/_head.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -500,3 +501,4 @@
 </div>
 </body>
 </html>
+<?php include '/_templates/_footer.php'; ?>

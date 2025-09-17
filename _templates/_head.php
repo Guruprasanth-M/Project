@@ -1,3 +1,20 @@
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Get username using userclass.php if user is logged in
+$username = null;
+if (!empty($_SESSION['user_id'])) {
+    try {
+        $user = new user($_SESSION['user_id']); // Use user ID from session
+        $username = htmlspecialchars($user->getUsername());
+    } catch (Exception $e) {
+        $username = null; // fallback if user not found
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,14 +116,6 @@
       <button class="header-btn" title="Settings"><i class="fas fa-cog"></i></button>
 
       <!-- User/Login -->
-      <?php
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
-            ? htmlspecialchars($_SESSION['username'])
-            : null;
-      ?>
       <div class="relative group">
         <button class="header-btn font-semibold" id="loginBtn">
           <i class="fas fa-user mr-2"></i>
@@ -114,7 +123,7 @@
         </button>
         <div class="dropdown">
           <?php if ($username): ?>
-            <a href="/project/_templates/_profile.php"
+            <a href="/project/profile.php"
                class="block px-4 py-2 hover:bg-[#222] text-sm text-gray-200">
               <i class="fas fa-user mr-2"></i> Profile
             </a>
@@ -137,3 +146,5 @@
       </div>
     </div>
   </header>
+</body>
+</html>
