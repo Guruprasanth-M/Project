@@ -2,9 +2,15 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$username = isset($_SESSION['username']) && !empty($_SESSION['username'])
-    ? htmlspecialchars($_SESSION['username'])
-    : "Guest";
+$username = "Guest";
+if (!empty($_SESSION['user_id'])) {
+    try {
+        $user = new user($_SESSION['user_id']);
+        $username = htmlspecialchars($user->getUsername());
+    } catch (Exception $e) {
+        $username = "Guest";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -203,7 +209,6 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
     </style>
 </head>
 <body>
-
     <div class="flex" style="gap:0;">
         <?php include '_sidebar.php'; ?>
         <main class="main-content" id="mainContent">
@@ -212,17 +217,6 @@ $username = isset($_SESSION['username']) && !empty($_SESSION['username'])
                     <h1>Welcome, <?php echo $username; ?>!</h1>
                     <p>Connect, collaborate, and create your story. This dashboard is your gateway to alumni, opportunities, and inspiration.</p>
                 </section>
-
-                <div class="feature-bar">
-                    <button class="feature-btn"><i class="fas fa-bolt"></i> Launch</button>
-                    <button class="feature-btn"><i class="fas fa-chart-line"></i> Analytics</button>
-                    <button class="feature-btn"><i class="fas fa-graduation-cap"></i> Courses</button>
-                    <button class="feature-btn"><i class="fas fa-award"></i> Achievements</button>
-                    <button class="feature-btn"><i class="fas fa-globe"></i> Explore</button>
-                    <button class="feature-btn"><i class="fas fa-lightbulb"></i> Ideas</button>
-                    <button class="feature-btn"><i class="fas fa-rocket"></i> Projects</button>
-                    <button class="feature-btn"><i class="fas fa-heart"></i> Support</button>
-                </div>
 
                 <div class="stats-bar">
                     <div class="stat-card"><i class="fas fa-user-friends stat-icon"></i> Alumni Connections <span class="stat-value">1,234</span></div>
