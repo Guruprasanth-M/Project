@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Get username using userclass.php if user is logged in
+
 $username = null;
 if (!empty($_SESSION['user_id'])) {
     try {
