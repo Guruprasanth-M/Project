@@ -1,17 +1,20 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
 $username = null;
+$user_points = 0; // default points
+
 if (!empty($_SESSION['user_id'])) {
     try {
         $user = new user($_SESSION['user_id']); // Use user ID from session
         $username = htmlspecialchars($user->getUsername());
+        // Sample points logic
+        $user_points = method_exists($user, 'getPoints') ? $user->getPoints() : 0;
     } catch (Exception $e) {
-        $username = null; // fallback if user not found
+        $username = null;
+        $user_points = 0;
     }
 }
 ?>
@@ -25,7 +28,6 @@ if (!empty($_SESSION['user_id'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
-    /* Dropdown styling */
     .dropdown {
       display: none;
       position: absolute;
@@ -43,8 +45,6 @@ if (!empty($_SESSION['user_id'])) {
     .group:focus-within .dropdown {
       display: block;
     }
-
-    /* Buttons */
     .header-btn {
       border: 1px solid #475569;
       background: #0d1117;
@@ -63,8 +63,6 @@ if (!empty($_SESSION['user_id'])) {
       color: #3b82f6;
       border-color: #3b82f6;
     }
-
-    /* Search bar */
     .search-bar {
       border: 1px solid #475569;
       background: #0d1117;
@@ -79,10 +77,32 @@ if (!empty($_SESSION['user_id'])) {
     .search-bar:focus {
       border-color: #3b82f6;
     }
-
     @media (max-width: 900px) {
       .search-bar { width: 180px; }
       .header-btn { padding: 0.5rem 0.4rem; }
+    }
+    /* Points badge styling */
+    .points-badge-link {
+      text-decoration: none;
+      background: #22d3ee;
+      color: #222;
+      font-weight: bold;
+      border-radius: 0.4rem;
+      padding: 0.3rem 0.7rem;
+      margin-left: 0.7rem;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 2px 8px #22d3ee44;
+      transition: background 0.2s, color 0.2s;
+    }
+    .points-badge-link:hover {
+      background: #0ff1c6;
+      color: #161b22;
+    }
+    .points-badge-link i {
+      margin-right: 0.3em;
+      color: #facc15;
     }
   </style>
 </head>
@@ -109,8 +129,13 @@ if (!empty($_SESSION['user_id'])) {
       </div>
     </div>
 
-    <!-- Right: Actions -->
+    <!-- Right: Points + Actions -->
     <div class="flex items-center space-x-2">
+      <?php if ($username): ?>
+        <a href="lead.php" class="points-badge-link" title="Your Points">
+          <i class="fas fa-coins"></i> <?php echo $user_points; ?> pts
+        </a>
+      <?php endif; ?>
       <button class="header-btn" title="Notifications"><i class="fas fa-bell"></i></button>
       <button class="header-btn" title="Tasks"><i class="fas fa-list-check"></i></button>
       <button class="header-btn" title="Settings"><i class="fas fa-cog"></i></button>

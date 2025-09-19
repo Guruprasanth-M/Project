@@ -48,8 +48,8 @@
 <script>
 // Sample Project Data
 let projects = [
-    {title:"AI Chatbot", desc:"Conversational bot using NLP", link:"https://github.com/example/chatbot"},
-    {title:"Portfolio Website", desc:"Personal responsive portfolio", link:"https://example.com"},
+    {title:"Photogram", desc:"First project in webdevlopment with securty concern", link:"https://github.com/Guruprasanth-M/photogram_"},
+    {title:"Buffer overflow", desc:"Learning memory mangemet in c.", link:"https://github.com/Guruprasanth-M/bufferoverflow-in-c"},
 ];
 
 // Render Projects

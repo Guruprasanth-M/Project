@@ -15,6 +15,12 @@ if (!empty($_SESSION['username'])) {
 // Dummy mentor name
 $mentor_name = "Mr. R. CyberGuru";
 
+// Dummy points and ranks
+$global_points = 940; // Example: from global leaderboard
+$internal_points = 540; // Example: from internal leaderboard (SNA only)
+$global_rank = 4; // Example rank in global leaderboard
+$internal_rank = 2; // Example rank in internal leaderboard
+
 // Handle resume upload (preview only, not functional)
 $resume_uploaded = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['resume']) && $logged_in) {
@@ -34,6 +40,7 @@ if (isset($_POST['profile_visibility'])) {
     $profile_visibility = $_POST['profile_visibility'];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,6 +87,30 @@ if (isset($_POST['profile_visibility'])) {
         .profile-card h2 { color:#22d3ee; margin-bottom:0.5rem; }
         .profile-card ul, .profile-card div { margin:0.5rem 0; }
         .badge { margin-right:0.5rem; padding:0.3rem 0.6rem; border-radius:0.25rem; background:#1f2937; color:#facc15; font-size:0.8rem; font-weight:600; }
+        .points-badge {
+            background: #22d3ee;
+            color: #222;
+            font-weight: bold;
+            border-radius: 0.4rem;
+            padding: 0.25rem 0.7rem;
+            margin-right: 0.7rem;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 8px #22d3ee44;
+        }
+        .points-badge i { margin-right: 0.3em; color: #facc15; }
+        .rank-label {
+            background: #6366f1;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 0.4rem;
+            padding: 0.25rem 0.7rem;
+            margin-right: 0.5rem;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+        }
         .social-link { color:#38bdf8; margin-right:0.5rem; text-decoration:underline; }
         .save-btn { background:#22d3ee; color:#000; border:none; padding:0.3rem 0.8rem; border-radius:0.3rem; cursor:pointer; font-size:0.9rem; }
         .save-btn:hover { background:#6366f1; color:#fff; }
@@ -120,6 +151,7 @@ if (isset($_POST['profile_visibility'])) {
         .vis-form { margin-top: 0.7rem; }
         .vis-label { font-size: 0.95rem; color: #f4f4f5; margin-right: 0.5rem;}
         .vis-select { width: auto; display:inline-block; font-size:0.95rem; }
+        .profile-points-rank { margin-top: 0.5rem; margin-bottom: 0.5rem; }
     </style>
 </head>
 <body>
@@ -142,10 +174,24 @@ if (isset($_POST['profile_visibility'])) {
         <!-- Top Profile Info -->
         <div class="profile-card">
             <div style="display:flex; align-items:center; gap:1rem;">
-                <img src="https://img.icons8.com/color/96/user-male-circle--v2.png" style="border-radius:50%; border:3px solid #38bdf8; width:96px; height:96px;" alt="Avatar">
+                <img src="/project/assests/images/logo.png" style="border-radius:50%; border:3px solid #38bdf8; width:96px; height:96px;" alt="Avatar">
                 <div>
                     <h2><?php echo $username; ?></h2>
                     <div>Karur, Tamil Nadu, India • <a href="#" class="social-link">Contact info</a></div>
+                    <div class="profile-points-rank">
+                        <span class="points-badge" title="Global Points">
+                            <i class="fas fa-coins"></i> <?php echo $global_points; ?> pts
+                        </span>
+                        <span class="rank-label" title="Global Rank">
+                            <i class="fas fa-globe"></i> Global: #<?php echo $global_rank; ?>
+                        </span>
+                        <span class="points-badge" style="background:#6366f1;color:#fff;" title="Internal Points">
+                            <i class="fas fa-coins"></i> <?php echo $internal_points; ?> pts
+                        </span>
+                        <span class="rank-label" style="background:#22d3ee;color:#222;" title="Internal Rank">
+                            <i class="fas fa-university"></i> Internal: #<?php echo $internal_rank; ?>
+                        </span>
+                    </div>
                     <div style="margin-top:0.5rem;">
                         <span class="badge">Selfmade Ninja Academy</span>
                         <span class="badge">500+ connections</span>
@@ -196,7 +242,7 @@ if (isset($_POST['profile_visibility'])) {
         <!-- About -->
         <div class="profile-section">
             <h2>About</h2>
-            <texta rows="4" id="bio-text">Cybersecurity-focused full-stack developer with hands-on training from Selfmade Ninja Academy (SNA). Proficient in C, PHP, Bash, Linux, with practical experience in secure coding, session management, vulnerability mitigation, and exploit development.</textarea>
+            <textarea rows="4" id="bio-text">Cybersecurity-focused full-stack developer with hands-on training from Selfmade Ninja Academy (SNA).</textarea>
             <!-- <button class="save-btn" onclick="saveBio()">Save Bio</button> -->
         </div>
 
@@ -205,7 +251,9 @@ if (isset($_POST['profile_visibility'])) {
             <div style="flex:1;">
                 <h2>Skills</h2>
                 <div class="skill-list" id="skills-list">
-                    <span class="badge">Python</span> <span class="badge">PHP</span> <span class="badge">Cybersecurity</span>
+                    <span class="badge">C</span>
+                    <span class="badge">PHP</span>
+                    <span class="badge">PYTHON</span>
                 </div>
                 <input id="skill-input" placeholder="Add skill...">
                 <button class="save-btn" onclick="addSkill()">+ Add Skill</button>
@@ -213,7 +261,12 @@ if (isset($_POST['profile_visibility'])) {
             <div style="flex:1;">
                 <h2>Interests</h2>
                 <div class="interest-list" id="interests-list">
-                    <span class="badge">AI/ML</span> <span class="badge">Cloud Computing</span>
+                    <span class="badge">AI/ML</span>
+                    <span class="badge">Cloud Computing</span>
+                    <span class="badge">Cybersecurity</span>
+                    <span class="badge">Web Development</span>
+                    <span class="badge">Open Source</span>
+                    <span class="badge">DevOps</span>
                 </div>
                 <input id="interest-input" placeholder="Add interest...">
                 <button class="save-btn" onclick="addInterest()">+ Add Interest</button>
@@ -245,8 +298,8 @@ if (isset($_POST['profile_visibility'])) {
         <div class="profile-section">
             <h2>Projects</h2>
             <ul id="projects-list">
-                <li>Smart Attendance System <span class="badge">Approved</span></li>
-                <li>CyberSafe App <span class="badge">Approved</span></li>
+                <li>Photogram <span class="badge">Approved</span></li>
+                <li>College profile building site (No name right now) <span class="badge">Approved</span></li>
             </ul>
             <input id="project-title-input" placeholder="Project Title">
             <input id="project-link-input" placeholder="Repo/Demo Link">

@@ -17,6 +17,7 @@
             </li>
             <li>
                 <a href="/project/profile.php" onclick="showSection('profile')" title="Profile">
+                     <!-- <a href="/project/_templates/_profile/_profile.php" onclick="showSection('profile')" title="Profile"></a> -->
                     <i class="fas fa-user"></i><span> Profile</span>
                 </a>
             </li>
