@@ -25,3 +25,22 @@ function load_template($name){
  include $_SERVER['DOCUMENT_ROOT']."/project/_templates/$name.php";
 }
 
+function load_profile_template($name){
+ include $_SERVER['DOCUMENT_ROOT']."/project/_templates/_profile/$name.php";
+}
+
+function load_leaderboard_template($name){
+ include $_SERVER['DOCUMENT_ROOT']."/project/_templates/_leaderboard/$name.php";
+}
+
+function load_networking_template($name){
+ include $_SERVER['DOCUMENT_ROOT']."/project/_templates/_networking/$name.php";
+}
+
+function load_pratice_template($name){
+ include $_SERVER['DOCUMENT_ROOT']."/project/_templates/_pratice/$name.php";
+}
+
+function load_project_template($name){
+ include $_SERVER['DOCUMENT_ROOT']."/project/_templates/_project/$name.php";
+}
