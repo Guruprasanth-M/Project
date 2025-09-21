@@ -29,7 +29,7 @@
 <main class="flex-grow flex items-center justify-center w-full">
     <div class="glass animate__animated animate__fadeInDown w-full max-w-md mx-auto py-8 px-6">
         <div class="flex flex-col items-center mb-6">
-            <img src="h.selfmade.ninja/assets/brand/logo-text-opt.svg" alt="SkillSphere" height="60" class="login-logo mb-2">
+            <!-- <img src="h.selfmade.ninja/assets/brand/logo-text-opt.svg" alt="SkillSphere" height="60" class="login-logo mb-2"> -->
             <h1 class="text-3xl font-bold text-white mb-2 font-sans">SkillSphere Signup</h1>
             <span class="text-blue-300 font-semibold tracking-wide mb-2">Alumni & Student Portal</span>
         </div>

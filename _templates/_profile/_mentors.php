@@ -11,7 +11,7 @@
   <style>
     body {
       /* Replace the URL below with your preferred background image */
-      background: url('https://i.pinimg.com/1200x/f6/74/e9/f674e9bbd677d3a8ee9f4905b5549ac8.jpg') no-repeat center center fixed;
+      background: url('//https://i.pinimg.com/1200x/f6/74/e9/f674e9bbd677d3a8ee9f4905b5549ac8.jpg') no-repeat center center fixed;
       background-size: cover;
       min-height: 100vh;
     }

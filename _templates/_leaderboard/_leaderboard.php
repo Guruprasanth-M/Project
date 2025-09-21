@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body {
-        background: url('https://i.pinimg.com/originals/70/2e/df/702edf718ed0ef3eacd189785d876f87.gif') no-repeat center center fixed;
+        background: url('https://wallpaperaccess.com/full/8357713.jpg') no-repeat center center fixed;
         background-size: cover;
       }
       .bg-black-trans {

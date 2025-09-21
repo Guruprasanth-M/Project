@@ -1,8 +1,14 @@
 <?php
-session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// Make sure to include your User class
+
+// Check if session is already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Make sure to include or require your User class
+// require_once 'User.php';
 
 $login_success = false;
 $login_error = null;
@@ -29,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $login_error = "Invalid username or password.";
     }
 }
+include '_head.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main class="flex-grow flex items-center justify-center w-full">
     <div class="glass animate__animated animate__fadeInDown w-full max-w-md mx-auto py-8 px-6">
         <div class="flex flex-col items-center mb-6">
-            <img src="https://git.selfmade.ninja/uploads/-/system/appearance/logo/1/Logo_Dark.png" alt="SkillSphere" height="60" class="login-logo mb-2">
+            <!-- <img src="https://selfmade.ninja/assets/brand/logo-text.svg" alt="SkillSphere" height="60" class="login-logo mb-2"> -->
             <h1 class="text-3xl font-bold text-white mb-2 font-sans">SkillSphere Login</h1>
             <span class="text-blue-300 font-semibold tracking-wide mb-2">Alumni & Student Portal</span>
         </div>
